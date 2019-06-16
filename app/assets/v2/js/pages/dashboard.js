@@ -275,6 +275,11 @@ var get_search_URI = function(offset) {
       if (!uri.endsWith('?'))
         uri += '&';
       uri += filter + '=' + val;
+      // Automatically Hide Closed Github Issues From Explorer #2458
+      // but only when idx_status=Open is selected
+      if ( (filter == 'idx_status') && (val == 'open') ) {
+        uri += '&is_issue_closed=false';
+      }
     }
   });
 
